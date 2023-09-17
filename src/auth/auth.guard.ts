@@ -1,10 +1,8 @@
-import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common';
+// auth.guard.ts
+import { Injectable } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 
 @Injectable()
-export class AuthGuard implements CanActivate {
-  canActivate(context: ExecutionContext): boolean {
-    const request = context.switchToHttp().getRequest();
-    return !!request.user; // return true if there's a user object, otherwise false
-  }
-}
+export class HttpBasicAuthGuard extends AuthGuard('http-basic') {}
+
 

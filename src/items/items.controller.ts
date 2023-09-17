@@ -1,8 +1,16 @@
-import { Controller, Get, Post, Put, Delete, Body, Param } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Put,
+  Delete,
+  Body,
+  Param,
+} from '@nestjs/common';
 import { ItemsService, Item } from './items.service';
 import { UseGuards } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
-import { HttpBasicStrategy } from '../auth/http-basic.strategy';
+import { HttpBasicAuthGuard } from 'src/auth/auth.guard';
+
 
 
 @Controller('items')
@@ -10,7 +18,7 @@ export class ItemsController {
   constructor(private readonly itemsService: ItemsService) {}
 
   @Get()
-  @UseGuards(AuthGuard('HttpBasicStrategy'))
+  @UseGuards(HttpBasicAuthGuard)
   async findAll(): Promise<Item[]> {
     return this.itemsService.findAll();
   }
