@@ -1,6 +1,5 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
-import { catchError, map } from 'rxjs/operators';
 
 @Injectable()
 export class AuthService {

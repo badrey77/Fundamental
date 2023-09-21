@@ -1,11 +1,14 @@
 import { Module } from '@nestjs/common';
 import { AuthModule } from 'src/auth/auth.module';
-import { HttpBasicStrategy } from 'src/auth/http-basic.strategy';
+import { ItemsService } from './items.service';
+import { ItemsController } from './items.controller';
+
 
 @Module({
     imports: [
       AuthModule,
     ],
-    providers: [HttpBasicStrategy,], 
+    providers: [ItemsService],
+    controllers: [ItemsController] 
   })
 export class ItemsModule {}

@@ -9,7 +9,7 @@ import {
 } from '@nestjs/common';
 import { ItemsService, Item } from './items.service';
 import { UseGuards } from '@nestjs/common';
-import { HttpBasicAuthGuard } from 'src/auth/auth.guard';
+import { JwtAuthGuard } from 'src/auth/auth.guard';
 
 
 
@@ -18,7 +18,7 @@ export class ItemsController {
   constructor(private readonly itemsService: ItemsService) {}
 
   @Get()
-  @UseGuards(HttpBasicAuthGuard)
+  @UseGuards(JwtAuthGuard)
   async findAll(): Promise<Item[]> {
     return this.itemsService.findAll();
   }
